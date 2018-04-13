@@ -1,0 +1,13 @@
+{
+  "database":{
+    "url":"",
+    "username":"",
+    "password":"",
+    "database":""
+  },
+  "views":"",
+  "controller":"",
+  "session":{
+
+  }
+}

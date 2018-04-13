@@ -1,0 +1,44 @@
+{
+  "name": "summery",
+  "version": "0.0.4",
+  "description": "基于koa全家桶，装饰器风格的web开发框架",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rihel/summery.git"
+  },
+  "keywords": [
+    "koa",
+    "summery"
+  ],
+  "author": "rihel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rihel/summery/issues"
+  },
+  "homepage": "https://github.com/Rihel/summery#readme",
+  "dependencies": {
+    "koa": "^2.5.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-router": "^7.4.0",
+    "koa-session": "^5.8.1",
+    "koa-static": "^4.0.2",
+    "koa-static-cache": "^5.1.2",
+    "koa-views": "^6.1.4"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.0.45",
+    "@types/koa-bodyparser": "^4.2.0",
+    "@types/koa-router": "^7.0.27",
+    "@types/koa-session": "^5.7.3",
+    "@types/koa-static": "^4.0.0",
+    "@types/koa-views": "^2.0.3",
+    "@types/mysql": "^2.15.4",
+    "@types/node": "^9.6.4",
+    "nodemon": "^1.17.3",
+    "typescript": "^2.8.1"
+  }
+}
