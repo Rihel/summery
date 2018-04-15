@@ -4,7 +4,7 @@
   "description": "基于koa全家桶，装饰器风格的web开发框架",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node_modules/.bin/nodemon exmple/app.js"
   },
   "repository": {
     "type": "git",
@@ -21,15 +21,6 @@
   },
   "homepage": "https://github.com/Rihel/summery#readme",
   "dependencies": {
-    "koa": "^2.5.0",
-    "koa-bodyparser": "^4.2.0",
-    "koa-router": "^7.4.0",
-    "koa-session": "^5.8.1",
-    "koa-static": "^4.0.2",
-    "koa-static-cache": "^5.1.2",
-    "koa-views": "^6.1.4"
-  },
-  "devDependencies": {
     "@types/koa": "^2.0.45",
     "@types/koa-bodyparser": "^4.2.0",
     "@types/koa-router": "^7.0.27",
@@ -38,6 +29,23 @@
     "@types/koa-views": "^2.0.3",
     "@types/mysql": "^2.15.4",
     "@types/node": "^9.6.4",
+    "koa": "^2.5.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-router": "^7.4.0",
+    "koa-session": "^5.8.1",
+    "koa-static": "^4.0.2",
+    "koa-static-cache": "^5.1.2",
+    "koa-views": "^6.1.4",
+    "mysql": "^2.15.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-3": "^6.24.1",
     "nodemon": "^1.17.3",
     "typescript": "^2.8.1"
   }

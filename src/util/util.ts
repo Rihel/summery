@@ -5,6 +5,7 @@ import { readdirSync } from "fs";
 const ops = Object.prototype.toString;
 
 export const type = (data : any = {}, t : string) : boolean => {
+	// console.log(data);
   return ops
     .call(data)
     .match(/\[object\s(.+)\]/)[1]
@@ -46,15 +47,19 @@ export function normalPath(path:string):string{
 }
 
 
-export function loadAllScriptFileOnDir(dirName:string):void{
+export function loadAllScriptFileOnDir(dirName:string):any[]{
 	const dirPath = resolve(process.cwd(),`./${dirName}`);
 	const files = readdirSync(dirPath);
+	const modules = []
 	files.forEach((fileName:string)=>{
 		let filePath = resolve(dirPath,`./${fileName}`);
 		if(/\.(js)/.test(filePath)){
 			require(filePath);
 		}
-	})
+	})	
+	return modules;
 }
+
+
 
 

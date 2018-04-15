@@ -1,0 +1,13 @@
+{
+	"presets": [
+		["env",{
+      "target":[]
+    }],
+		"stage-3"
+	],
+	"plugins": [
+		"transform-class-properties",
+    "transform-decorators-legacy",
+    "transform-object-rest-spread"
+	]
+}

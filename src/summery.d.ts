@@ -1,16 +1,24 @@
 import * as Koa from 'koa';
 import * as Router from 'koa-router';
 import {Session} from 'koa-session';
-
+/**
+ * 构造函数类型
+ */
 declare type Constructor = {
   new(...args : any[]): {}
 }
 declare type Koa = Koa;
 
+/**
+ * 路由参数
+ */
 interface IRequestMappingOption {
   method : string,
   path : string
 }
+/**
+ * 路由参数
+ */
 interface IRouter extends Router {
   [key : string] : any
 }
@@ -21,11 +29,18 @@ interface IMapOption extends IRequestMappingOption {
 interface IObject {
   [key : string] : any;
 }
+
+/**
+ * session配置
+ */
 interface ISessionConfig {
   keys : string[],
   option : Session
 }
 
+/**
+ * 模板引擎配置
+ */
 interface IViewsConfig {
   dirname : string,
   config : {
@@ -39,7 +54,9 @@ interface IViewsConfig {
   }
 }
 
-declare function staticCache(dir : string, option : ISessionConfig) : Koa;
+
+
+
 
 interface IStaticConfig {
   cache?: boolean;
@@ -58,9 +75,9 @@ interface IStaticConfig {
 
 interface IConfigOption extends IObject {
   database?: {
-    url: string,
+    host: string,
     password: string,
-    username: string,
+    user: string,
     database: string
   };
   controller?: string;

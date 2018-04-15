@@ -12,6 +12,12 @@ export enum ResponseStatus{
 	MISS_ARG = 20
 }
 
+export enum ResponseErrorText{
+	ERROR='请求错误',
+	NEED_LOGIN='需要登录',
+	MISS_ARG = '缺少参数'
+}
+
 class ServerResponse<DataType>{
 	private msg?:string;
 	private status:number;
@@ -31,12 +37,32 @@ class ServerResponse<DataType>{
 	}
 }
 
-export const createSuccess=()=>{
-	return new ServerResponse({status:ResponseStatus.SUCCESS});
+export const createSuccess=<T>(option:IServerResponse<T>)=>{
+	return new ServerResponse<T>(option);
+}
+
+export const createSuccessByMsg=(msg:string)=>{
+	return createSuccess({
+		status:ResponseStatus.SUCCESS,
+		msg,
+	})
+}
+
+export const createSuccessByStatus=(status:number)=>{
+	return createSuccess({
+		status
+	})
+}
+
+export const createSuccessByData=<T>(data:T)=>{
+	return createSuccess<T>({
+		status:ResponseStatus.SUCCESS,
+		data,
+	})
 }
 
 export const createError=()=>{
-	return new ServerResponse({status:ResponseStatus.ERROR,msg:'错误'});
+	return new ServerResponse({status:ResponseStatus.ERROR,msg:ResponseErrorText.ERROR});
 }
 
 export const createErrorByMessage=(msg:string)=>{
@@ -49,5 +75,5 @@ export const createErrorByStatusMessage=(status:number,msg:string)=>{
 
 
 export const createLoginError=()=>{
-	return createErrorByStatusMessage(ResponseStatus.NEED_LOGIN,'需要登录！');
+	return createErrorByStatusMessage(ResponseStatus.NEED_LOGIN,ResponseErrorText.NEED_LOGIN);
 }

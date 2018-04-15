@@ -4,6 +4,7 @@ const path_1 = require("path");
 const fs_1 = require("fs");
 const ops = Object.prototype.toString;
 exports.type = (data = {}, t) => {
+    // console.log(data);
     return ops
         .call(data)
         .match(/\[object\s(.+)\]/)[1]
@@ -42,11 +43,13 @@ exports.normalPath = normalPath;
 function loadAllScriptFileOnDir(dirName) {
     const dirPath = path_1.resolve(process.cwd(), `./${dirName}`);
     const files = fs_1.readdirSync(dirPath);
+    const modules = [];
     files.forEach((fileName) => {
         let filePath = path_1.resolve(dirPath, `./${fileName}`);
         if (/\.(js)/.test(filePath)) {
             require(filePath);
         }
     });
+    return modules;
 }
 exports.loadAllScriptFileOnDir = loadAllScriptFileOnDir;

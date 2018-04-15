@@ -1,29 +1,28 @@
-import {Constructor, IRequestMappingOption, IMapOption} from "../summery";
+import {Constructor, IRequestMappingOption, IMapOption, IObject} from "../summery";
 import {IMiddleware} from "koa-router";
 import {normalize} from "path";
 import {Context} from "koa";
 import {createLoginError, createErrorByMessage, createErrorByStatusMessage, ResponseStatus} from "./serverResponse";
-import {normalPath} from "../util/util";
+import {normalPath, merge} from "../util/util";
+import DBHelper from "./dbHelper";
 
 export const routerMap = new Map < IMapOption,
   IMiddleware > ();
 
 export const Controller = (prefix : string) => {
-  return (target : Constructor) : any => {
-    target.prototype.prefix = prefix;
-    return class extends target {}
-  }
+  return Inject({
+		prefix,
+	});
 }
 
 export const RequestMapping = (option : IRequestMappingOption) => {
   return (target : any, property : string, descriptor : PropertyDescriptor) : any => {
 		let controller = descriptor.value;
-		console.log( target )
     option.path = normalPath(option.path);
     routerMap.set({
       ...option,
       target
-    }, controller);
+		}, controller);
     return descriptor;
   }
 }
@@ -39,9 +38,14 @@ export const Post = (path : string) => {
 export const Auth = (target : any, methodName : string, descriptor : PropertyDescriptor) => {
   let old = descriptor.value;
   descriptor.value = function (ctx : Context, next : () => Promise < any >) : any {
-    if(!ctx.session.user) {
-      return (ctx.body = createLoginError());
-    }
+		// console.log(ctx.session);
+    try{
+			if(!ctx.session.user) {
+				return (ctx.body = createLoginError());
+			}
+		}catch(e){
+			console.log(e);
+		}
   };
   return descriptor;
 }
@@ -97,3 +101,25 @@ export const Required = (requiredOption : RequiredOption) => {
     return descriptor;
   }
 }
+
+/**
+ * 注入属性到构造函数
+ * @param properties 属性map
+ */
+export const Inject=(properties:IObject)=>{
+	return (target:Constructor,key:string)=>{
+		for (const key in properties) {
+				const value = properties[key];
+				target.prototype[key]=value;
+		}
+		return class extends target{};
+	}
+}
+
+
+
+
+
+
+
+

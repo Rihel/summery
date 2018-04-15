@@ -2,11 +2,14 @@ import { routerMap } from "../lib/decorators";
 import  * as Router from 'koa-router';
 import { Koa, IRouter } from "../summery";
 import { loadAllScriptFileOnDir, normalPath } from "../util/util";
+import { Summery } from "..";
 export class RouterMapping{
 	private router:IRouter = new Router();
-  private app:Koa;
-	constructor(app:Koa){
+	private app:Koa;
+	private server:Summery;
+	constructor(app:Koa,sever?:Summery){
 		this.app=app;
+		this.server=this.server;
 	}
 	public init(){
 		for (const option of routerMap.keys()) {
