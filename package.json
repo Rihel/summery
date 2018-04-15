@@ -1,6 +1,6 @@
 {
   "name": "summery",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "基于koa全家桶，装饰器风格的web开发框架",
   "main": "index.js",
   "scripts": {
