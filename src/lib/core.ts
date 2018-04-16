@@ -25,11 +25,12 @@ export class Summery {
 	private RouterMapping: RouterMapping;
 	private db:DBHelper;
 	public config: IConfigOption;
-	constructor(configFileName: IConfigOption | string) {
+	constructor(config: IConfigOption | string) {
+    if(!config){
+      throw '配置不能为空';
+    }
 		//加载配置文件
-		this.config = isObject(configFileName) ? 
-									<IConfigOption>configFileName : 
-									getConfigFile(<string>configFileName);
+		this.config =<IConfigOption>config;
 		this.RouterMapping = new RouterMapping(this.app);
 
 		this.init();
