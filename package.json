@@ -1,9 +1,9 @@
 {
   "name": "summery",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "基于koa全家桶，装饰器风格的web开发框架",
   "main": "index.js",
-  "types":"src/summery.d.ts",
+  "types": "src/summery.d.ts",
   "scripts": {
     "dev": "node_modules/.bin/nodemon exmple/app.js"
   },
